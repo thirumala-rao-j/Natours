@@ -8,7 +8,7 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
 const compression = require('compression');
-// const cors = require('cors');
+const cors = require('cors');
 
 const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
@@ -29,7 +29,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Set security HTTp headers
 app.use(helmet());
-// app.use(cors());
+app.use(cors());
+app.options('*', cors());
 
 // Developmet logging
 if (process.env.NODE_ENV === 'development') {
